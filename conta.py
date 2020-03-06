@@ -7,10 +7,10 @@ class Conta:
         self.__limite = limite
 
     def extrato(self):
-        print("Nome do titular.....: {}".format(self.__titular))
-        print("Saldo Atual.........: {}".format(self.__saldo))
-        print("Limite da conta.....: {}".format(self.__limite))
-        print("Saldo disponível....: {}".format((self.__saldo) + (self.__limite)))
+        print("Nome do titular...........: {}".format(self.__titular))
+        print("Saldo Atual...............: {}".format(self.__saldo))
+        print("Limite da conta...........: {}".format(self.__limite))
+        print("Saldo total disponível....: {}".format((self.__saldo) + (self.__limite)))
 
     def depositar(self, valor):
         self.__saldo += valor
