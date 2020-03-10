@@ -6,6 +6,8 @@ class Conta:
         self.__saldo = saldo
         self.__limite = limite
 
+
+    @property
     def extrato(self):
         print("Nome do titular...........: {}".format(self.__titular))
         print("Saldo Atual...............: {}".format(self.__saldo))
@@ -15,22 +17,26 @@ class Conta:
     def depositar(self, valor):
         self.__saldo += valor
 
-    def sacar(self, valor):
+    def __pode_sacar(self, valor_saque):
         sdo_dispo = self.__saldo + self.__limite
-        if sdo_dispo >= valor:
+        return valor_saque <= sdo_dispo
+
+    def sacar(self, valor):
+        if (self.__pode_sacar(valor)):
             self.__saldo -= valor
         else:
             print("Transação não efetuada - Saldo Indisponível")
-            sdo_dispo += valor
 
     def tranferir(self, valor, destino):
         self.sacar(valor)
         destino.depositar(valor)
 
-    def get_saldo(self):
+    @property
+    def saldo(self):
         return self.__saldo
 
-    def get_titular(self):
+    @property
+    def titular(self):
         return self.__titular
 
     @property
@@ -40,3 +46,11 @@ class Conta:
     @limite.setter
     def limite(self, limite):
         self.__limite = limite
+
+    @staticmethod
+    def codigo_banco():
+            return "001"
+
+    @staticmethod
+    def codigos_bancos():
+        return {'BB':'001', 'CEF':'104', 'Bradesco':'237', 'Itaú':'341'}
